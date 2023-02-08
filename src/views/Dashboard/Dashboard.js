@@ -37,7 +37,7 @@ const BackgroundImage = createGlobalStyle`
     background-color: #171923;
   }
 `;
-const TITLE = 'bomb.money | BTC pegged algocoin';
+const TITLE = 'bomb invastment';
 
 // const BackgroundImage = createGlobalStyle`
 //   body {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = () => {
+const Dashboard = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   const bombFtmLpStats = useLpStatsBTC('BOMB-BTCB-LP');
@@ -179,83 +179,16 @@ const Home = () => {
       </Helmet>
       <BackgroundImage />
       <Grid container spacing={3}>
-        {/* Logo */}
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
-        >
-          <img src={BombImage} alt="Bomb.money" style={{ maxHeight: '240px' }} />
-        </Grid>
+        
         {/* Explanation text */}
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} sm={14}>
           <Paper>
             <Box p={4} style={{ textAlign: 'center' }}>
-              <h1>BOMB: BITCOIN SAFETY + DEFI YIELDS</h1>
-              <p>
-                <strong>BOMB is pegged via algorithm to a 10,000:1 ratio to BTC. $100k BTC = $10 BOMB PEG</strong>
-              </p>
-              <p>
-                <h2>Best Algocoin | 0.5%+ DAILY | Audited | Doxxed team</h2>
-                {/* Stake your BOMB-BTC LP in the Farm to earn BSHARE rewards. Then stake your earned BSHARE in the
-                Boardroom to earn more BOMB! */}
-              </p>
-              <p>
-                {/* <IconTelegram alt="telegram" style={{ fill: '#dddfee', height: '15px' }} /> */}
-                Join our{' '}
-                <a
-                  href="https://t.me/bombmoneybsc"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ color: '#dddfee' }}
-                >
-                  Telegram
-                </a>{' '}
-                or{' '}
-                <a
-                  href="https://discord.bomb.money"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ color: '#dddfee' }}
-                >
-                  Discord
-                </a>{' '}
-                to find out more!
-              </p>
+              <h1>Bomb Finance Summary</h1>
+              <hr/>
+              Current Supply  Total Supply  Price
 
-              <button onClick={openModal} className="shinyButtonSecondary">
-                Learn about BOMB
-                {modal ? (
-                  <section className="modal__bg">
-                    <div className="modal__align">
-                      <div className="modal__content" modal={modal}>
-                        <IoCloseOutline className="modal__close" arial-label="Close modal" onClick={setModal} />
-                        <div className="modal__video-align">
-                          {videoLoading ? (
-                            <div className="modal__spinner">
-                              {' '}
-                              <BiLoaderAlt className="modal__spinner-style" fadeIn="none" />
-                            </div>
-                          ) : null}
-                          <iframe
-                            className="modal__video-style"
-                            onLoad={spinner}
-                            loading="lazy"
-                            width="800"
-                            height="500"
-                            src="https://www.youtube.com/embed/nhCWmmRNNhc"
-                            title="BOMB Intro Video"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullscreen
-                          ></iframe>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                ) : null}
-              </button>
+
             </Box>
           </Paper>
         </Grid>
@@ -521,4 +454,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

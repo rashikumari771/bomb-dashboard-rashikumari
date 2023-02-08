@@ -13,7 +13,7 @@ import Label from '../../../components/Label';
 import Value from '../../../components/Value';
 //import useXbombBalance from '../../../hooks/useXbombBalance';
 import useBtcStats from '../../../hooks/useBtcStats';
-import useApprove, {ApprovalState} from '../../../hooks/useApprove';
+import useApprove, { ApprovalState } from '../../../hooks/useApprove';
 import useModal from '../../../hooks/useModal';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import MetamaskFox from '../../../assets/img/metamask-fox.svg';
@@ -26,8 +26,6 @@ import useBombFinance from '../../../hooks/useBombFinance';
 import TokenSymbol from '../../../components/TokenSymbol';
 import useSupplyToBtcb from '../../../hooks/useSupplyToBtcb';
 import useRedeemFromBtcb from '../../../hooks/useRedeemFromBtcb';
-
-
 
 const SupplyBtcb: React.FC = () => {
   const bombFinance = useBombFinance();
@@ -44,21 +42,15 @@ const SupplyBtcb: React.FC = () => {
   // const xbombRate = Number(xbombBalance) / 1000000000000000000;
   // const xbombToBombEquivalent = Number(getDisplayBalance(stakedBalance)) * xbombRate;
 
-  const btcPriceInDollars = useMemo(
-    () => (btcStats ? Number(btcStats).toFixed(2) : null),
-    [btcStats],
-  );
+  const btcPriceInDollars = useMemo(() => (btcStats ? Number(btcStats).toFixed(2) : null), [btcStats]);
 
   const stakedTokenPriceInDollars = Number(btcPriceInDollars);
 
-  const tokenPriceInDollars = useMemo(
-    () => {
-      return stakedTokenPriceInDollars
-        ? (Number(stakedTokenPriceInDollars) * Number(getDisplayBalance(stakedBalance))).toFixed(2).toString()
-        : null;
-    },
-    [stakedTokenPriceInDollars, stakedBalance],
-  );
+  const tokenPriceInDollars = useMemo(() => {
+    return stakedTokenPriceInDollars
+      ? (Number(stakedTokenPriceInDollars) * Number(getDisplayBalance(stakedBalance))).toFixed(2).toString()
+      : null;
+  }, [stakedTokenPriceInDollars, stakedBalance]);
   // const isOldBoardroomMember = boardroomVersion !== 'latest';
 
   const { onStake } = useSupplyToBtcb();
@@ -92,9 +84,9 @@ const SupplyBtcb: React.FC = () => {
         <CardContent>
           <StyledCardContentInner>
             <StyledCardHeader>
-                 <Typography variant="h5" component="h2">
-              Supply BTCB
-            </Typography>
+              <Typography variant="h5" component="h2">
+                Supply BTCB
+              </Typography>
               <CardIcon>
                 <TokenSymbol symbol="BTCB" />
               </CardIcon>
@@ -132,21 +124,15 @@ const SupplyBtcb: React.FC = () => {
                   Approve BTCB
                 </Button>
               ) : (
-                  <>
-                    {approveStatusW !== ApprovalState.APPROVED ? (
-            
-                      <IconButton onClick={approveW}>
-                        A
-                      </IconButton>
-                    ) : (
-                      <IconButton onClick={onPresentWithdraw}>
-                        <RemoveIcon color={'yellow'} />
-                      </IconButton>
-                        
-                          
-                            )}
-                          
-                           
+                <>
+                  {approveStatusW !== ApprovalState.APPROVED ? (
+                    <IconButton onClick={approveW}>A</IconButton>
+                  ) : (
+                    <IconButton onClick={onPresentWithdraw}>
+                      <RemoveIcon color={'yellow'} />
+                    </IconButton>
+                  )}
+
                   <StyledActionSpacer />
                   <IconButton onClick={onPresentDeposit}>
                     <AddIcon color={'yellow'} />

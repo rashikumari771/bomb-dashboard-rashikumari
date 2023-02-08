@@ -1,9 +1,9 @@
-import React, {Suspense, lazy} from 'react';
-import {Provider} from 'react-redux';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {ThemeProvider as TP} from '@material-ui/core/styles';
-import {ThemeProvider as TP1} from 'styled-components';
-import {UseWalletProvider} from 'use-wallet';
+import React, { Suspense, lazy } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider as TP } from '@material-ui/core/styles';
+import { ThemeProvider as TP1 } from 'styled-components';
+import { UseWalletProvider } from 'use-wallet';
 import usePromptNetwork from './hooks/useNetworkPrompt';
 import BanksProvider from './contexts/Banks';
 import BombFinanceProvider from './contexts/BombFinanceProvider';
@@ -17,9 +17,10 @@ import Loader from './components/Loader';
 import Popups from './components/Popups';
 import useChainId from './hooks/useChainId';
 //import Regulations from './views/Regulations/Regulations';
-import {RefreshContextProvider} from './contexts/RefreshContext';
+import { RefreshContextProvider } from './contexts/RefreshContext';
 
 const Home = lazy(() => import('./views/Home'));
+const Dashboard = lazy(() => import('./views/Dashboard'));
 const Farm = lazy(() => import('./views/Farm'));
 const Boardroom = lazy(() => import('./views/Boardroom'));
 const Bond = lazy(() => import('./views/Bond'));
@@ -29,7 +30,7 @@ const Supply = lazy(() => import('./views/Supply'));
 // const Liquidity = lazy(() => import('./views/Liquidity'));
 
 const NoMatch = () => (
-  <h3 style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+  <h3 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
     URL Not Found. <a href="/">Go back home.</a>
   </h3>
 );
@@ -51,6 +52,9 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
             </Route>
             <Route path="/farm">
               <Farm />
@@ -90,19 +94,18 @@ const UseWalletProviderWrapper = (props: any) => {
   const chainId = useChainId();
 
   return <UseWalletProvider chainId={chainId} {...props}></UseWalletProvider>;
-}
+};
 
-const Providers: React.FC = ({children}) => {
+const Providers: React.FC = ({ children }) => {
   return (
     <TP1 theme={theme}>
       <TP theme={newTheme}>
         <UseWalletProviderWrapper
-                    chainId={config.chainId}
-
+          chainId={config.chainId}
           connectors={{
             walletconnect: { rpcUrl: 'https://rpc.ankr.com/bsc' },
             walletlink: {
-           //   url: config.defaultProvider,
+              //   url: config.defaultProvider,
               url: 'https://rpc.ankr.com/bsc',
               appName: 'bomb.money',
               appLogoUrl: 'https://raw.githubusercontent.com/bombmoney/bomb-assets/master/bomb-512.png',

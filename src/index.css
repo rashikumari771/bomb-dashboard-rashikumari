@@ -178,7 +178,7 @@ code {
 }
 
 /* Dropdown menus implementation */
-.navDropdownMenuRoot:after{
+.navDropdownMenuRoot:after {
   content: '';
   border: 4px solid transparent;
   border-top: 4px solid white;
@@ -225,13 +225,13 @@ code {
 
 @keyframes rotateMenu {
   0% {
-    transform: rotateX(-90deg)
+    transform: rotateX(-90deg);
   }
   70% {
-    transform: rotateX(20deg)
+    transform: rotateX(20deg);
   }
   100% {
-    transform: rotateX(0deg)
+    transform: rotateX(0deg);
   }
 }
 

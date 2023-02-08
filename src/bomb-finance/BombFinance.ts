@@ -336,11 +336,11 @@ export class BombFinance {
     //   };
     // }
     const poolContract = this.contracts[bank.contract];
-    let depositTokenValue: ERC20
-    if (bank.depositTokenName === "BBOND") {
-      depositTokenValue = this.BOMB
+    let depositTokenValue: ERC20;
+    if (bank.depositTokenName === 'BBOND') {
+      depositTokenValue = this.BOMB;
     } else {
-      depositTokenValue = depositToken
+      depositTokenValue = depositToken;
     }
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositTokenValue);
     const stakeInPool = await depositToken.balanceOf(bank.address);
@@ -505,12 +505,9 @@ export class BombFinance {
         tokenPrice = await this.getMaxiLPTokenPrice(
           '0x2c374ed1575e5c2c02c569f627299e902a1972cb000200000000000000000027',
         );
-      }
-      else if (tokenName === 'BBOND') {
+      } else if (tokenName === 'BBOND') {
         tokenPrice = await this.getTokenPriceFromPancakeswap(this.BOMB);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
-
-
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();

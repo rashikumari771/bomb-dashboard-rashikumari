@@ -1,16 +1,16 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import useTokenBalance from '../../hooks/useTokenBalance';
-import {getDisplayBalance} from '../../utils/formatBalance';
+import { getDisplayBalance } from '../../utils/formatBalance';
 
 import Label from '../Label';
-import Modal, {ModalProps} from '../Modal';
+import Modal, { ModalProps } from '../Modal';
 import ModalTitle from '../ModalTitle';
 import useBombFinance from '../../hooks/useBombFinance';
 import TokenSymbol from '../TokenSymbol';
-import {useMediaQuery} from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 
-const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
+const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const bombFinance = useBombFinance();
 
   const bombBalance = useTokenBalance(bombFinance.BOMB);
@@ -22,7 +22,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
   const bbondBalance = useTokenBalance(bombFinance.BBOND);
   const displayBbondBalance = useMemo(() => getDisplayBalance(bbondBalance, 18, 2), [bbondBalance]);
 
-    const xbombBalance = useTokenBalance(bombFinance.XBOMB);
+  const xbombBalance = useTokenBalance(bombFinance.XBOMB);
   const displayXbombBalance = useMemo(() => getDisplayBalance(xbombBalance, 18, 2), [xbombBalance]);
 
   const matches = useMediaQuery('(min-width:900px)');
@@ -31,8 +31,8 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
     <Modal>
       <ModalTitle text="My Wallet" />
 
-      <Balances style={{display: 'flex', flexDirection: matches ? 'row' : 'column'}}>
-        <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
+      <Balances style={{ display: 'flex', flexDirection: matches ? 'row' : 'column' }}>
+        <StyledBalanceWrapper style={{ paddingBottom: '15px' }}>
           <TokenSymbol symbol="BOMB" />
           <StyledBalance>
             <StyledValue>{displayBombBalance}</StyledValue>
@@ -40,21 +40,21 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
           </StyledBalance>
         </StyledBalanceWrapper>
 
-        <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
+        <StyledBalanceWrapper style={{ paddingBottom: '15px' }}>
           <TokenSymbol symbol="BSHARE" />
           <StyledBalance>
             <StyledValue>{displayBshareBalance}</StyledValue>
             <Label text="BSHARE Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
-        <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
+        <StyledBalanceWrapper style={{ paddingBottom: '15px' }}>
           <TokenSymbol symbol="XBOMB" />
           <StyledBalance>
             <StyledValue>{displayXbombBalance}</StyledValue>
             <Label text="XBOMB Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
-        <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
+        <StyledBalanceWrapper style={{ paddingBottom: '15px' }}>
           <TokenSymbol symbol="BBOND" />
           <StyledBalance>
             <StyledValue>{displayBbondBalance}</StyledValue>
