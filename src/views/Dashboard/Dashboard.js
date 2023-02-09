@@ -16,7 +16,7 @@ import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 //import { Bomb as bombProd } from '../../bomb-finance/deployments/deployments.mainnet.json';
 import { roundAndFormatNumber } from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
-import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
+import { Box, Button, Card, CardContent, Divider, Typography, Grid, Flex, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 import { Alert } from '@material-ui/lab';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -30,6 +30,7 @@ import BombImage from '../../assets/img/bomb.png';
 //import useBombMaxiStats from '../../hooks/useBombMaxiStats';
 
 import HomeImage from '../../assets/img/background.jpg';
+import theme from '../../theme';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
@@ -53,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+const list = [
+    {logo:"",name:"$BOMB",currentSupply:"8.67M",totalSupply:"60.9k",price:{dollar:"$0.24", bitcoin:"1.05BTCB"}},
+    {logo:"",name:"$BSHARE",currentSupply:"11.4k",totalSupply:"8.49m",price:{dollar:"$300", bitcoin:"13000BTCB"}},
+    {logo:"",name:"$BBOND",currentSupply:"20.00K",totalSupply:"179k",price:{dollar:"$0.28", bitcoin:"1.15BTCB"}}]
 
 const Dashboard = () => {
   const classes = useStyles();
@@ -183,273 +189,140 @@ const Dashboard = () => {
         {/* Explanation text */}
         <Grid item xs={12} sm={14}>
           <Paper>
-            <Box p={4} style={{ textAlign: 'center' }}>
-              <h1>Bomb Finance Summary</h1>
-              <hr/>
-              Current Supply  Total Supply  Price
-
-
+            <Box p={4} style={{ textAlign: 'center', color:"white" }}>
+              <div style={{fontWeight:"600", fontSize:20, marginBottom:10}}>Bomb Finance Summary</div>
+         <div style={{height:1, backgroundColor:"#999", marginBottom:12}} />
+         <div className='f' style={{  justifyContent:"space-between"}}>
+            <div>
+              <div className='f' style={{fontSize:12, color:"#ccc", justifyContent:"space-evenly",paddingBottom:4, marginLeft:120, borderBottom:"solid #888 1px"}}>
+                <div style={{marginRight:12, paddingTop:20}}>Current Supply</div>
+                <div style={{marginRight:12, paddingTop:20}}>Total Supply</div>
+                <div style={{marginRight:12, paddingTop:20}}>Price</div>
+              </div>
+              {list.map((item, idx) => (<div key={idx} className='f' style={{borderBottom:"solid #888 1px", marginLeft:40}}>
+                <div style={{paddingTop:10, paddingBottom:10, width: 100}}> {item.name} </div> 
+                <div style={{paddingTop:10, paddingBottom:10, width: 100}}> {item.currentSupply} </div>
+                <div style={{paddingTop:10, paddingBottom:10, width: 100}}> {item.totalSupply} </div>
+                <div style={{paddingTop:10,fontSize:18, paddingBottom:10, width: 120}}><div>{item.price.dollar}</div><div>{item.price.bitcoin}</div></div>
+                </div>))}
+            </div>
+            <div >
+              <div>
+              Current Epoch
+              </div>
+              <div style={{fontSize:44}}>
+                256
+              </div>
+              <hr />
+              <div style={{fontSize:44}}>
+                03:36:38
+              </div>
+              <div>
+              Next Epoch in
+              </div>
+              <hr />
+              <div style={{color:'#aaa'}}>
+              Live TWAP: <span style={{color:"greenyellow"}}>1.17</span>
+              </div>
+              <div style={{color:'#aaa'}}>
+              TVL: <span style={{color:"greenyellow"}}>$5.002.412</span>
+              </div>
+              <div style={{color:'#aaa'}}>
+              Last Epoch TWAP: <span style={{color:"greenyellow"}}>1.22</span>
+              </div>
+            </div>
+         </div>
             </Box>
           </Paper>
         </Grid>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
-            <Alert variant="filled" severity="info">
-              <h2>BOMB Cycle: Guide to Indefinite Printing</h2>
-              <b>How to maximize earnings while keeping BOMB printing!</b>{' '}
-              <Button
-                href="https://bombbshare.medium.com/the-bomb-cycle-how-to-print-forever-e89dc82c12e5"
-                target={'_blank'}
-                className="shinyButton"
-                style={{ margin: '10px' }}
-              >
-                READ ARTICLE
-              </Button>
-            </Alert>
-          </Grid>
-        </Grid>
+        <div className='f' style={{width:"80vw", marginTop:10}}>
+          <Box style={{width:"60%",marginLeft:20, marginRight:20}}>
+            <div style={{textAlign:"right", marginBottom:12}}>
+              <a href="#" style={{color:'cyan'}}>
+             Read Investment Strategy {">"}
+              </a>
+            </div>
+            <div style={{paddingTop:8, paddingBottom:8,textAlign:"center", backgroundColor:"cyan"}}>
+              INVEST NOW
+            </div>
+            <div className='f' style={{gap:3, marginTop:8, marginBottom:6}}>
+    <div style={{paddingTop:8, paddingBottom:8,textAlign:"center", backgroundColor:"#aaaaaa99", flexGrow:1}}><a href='http://discord.bomb.money/' style={{color:'white'}}>
+       Chats on Discord
+      </a>
+       </div>
+    <div style={{paddingTop:8, paddingBottom:8,textAlign:"center", backgroundColor:"#aaaaaa99", flexGrow:1}}><a href="https://docs.bomb.money/" style={{color:'white'}}>Read Docs</a></div>
+            </div>
+            <Paper style={{height:170, borderRadius:10, padding:14}}>
+            <div  className='f' style={{justifyContent:"space-between",marginLeft:6, marginRight:6,paddingBottom:4, borderBottom:"solid #999 0.8px"}}>
+       Boardroom  <div>TVL: $1,008,430</div>
+        </div>
+        <div style={{textAlign:"right", fontSize:12, marginTop:8}}>Total Staked: 7232</div>
+        <div style={{display:'flex', justifyContent:"space-between", padding:10}}>
+          <div>Daily Returns <br /> 2%</div>
+          <div>Your Stake</div>
+          <div>Earned</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Deposit</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Withdraw</div>
+        </div>
+            </Paper>
+            </Box>
+          <Paper style={{width:"40%", height:285, borderRadius:10, padding:15, fontSize:20}}>
+            Latest News
+          </Paper>
+        </div>
 
-        {/* TVL */}
-        <Grid item xs={12} sm={4}>
-          <Card style={{ paddingTop: '10px' }}>
-            <CardContent align="center">
-              <h2>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" />
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Wallet */}
-        <Grid item xs={12} sm={8}>
-          <Card style={{ height: '100%' }}>
-            <CardContent align="center" style={{ marginTop: '2.5%' }}>
-              {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button href="https://bomb.farm/" className="shinyButtonGreen" style={{ margin: '5px' }}>
-                Autovaults
-              </Button>
-              <Button
-                href={buyBombAddress}
-                style={{ margin: '5px' }}
-                target="_blank"
-                className={'shinyButton ' + classes.button}
-              >
-                Buy BOMB
-              </Button>
-              <Button
-                href={buyBShareAddress}
-                className={'shinyButton ' + classes.button}
-                target="_blank"
-                style={{ margin: '5px' }}
-              >
-                Buy BSHARE
-              </Button>
-              <Button
-                href={buyBusmAddress}
-                className={'shinyButton ' + classes.button}
-                target="_blank"
-                style={{ margin: '5px' }}
-              >
-                Buy BUSM
-              </Button>
-              <Button
-                target="_blank"
-                href="https://dexscreener.com/bsc/0x84392649eb0bc1c1532f2180e58bae4e1dabd8d6"
-                className="shinyButton"
-                style={{ margin: '5px' }}
-              >
-                BOMB Chart
-              </Button>
-              <Button
-                target="_blank"
-                href="https://dexscreener.com/bsc/0x1303246855b5b5ebc71f049fdb607494e97218f8"
-                className="shinyButton"
-                style={{ margin: '5px' }}
-              >
-                BSHARE Chart
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* BOMB */}
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent align="center" style={{ position: 'relative' }}>
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="BOMB" />
-                </CardIcon>
-              </Box>
-              <Button
-                onClick={() => {
-                  bombFinance.watchAssetInMetamask('BOMB');
-                }}
-                style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
-              >
-                {' '}
-                <b>+</b>&nbsp;&nbsp;
-                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
-              </Button>
-              <h2 style={{ marginBottom: '10px' }}>BOMB</h2>
-              10,000 BOMB (1.0 Peg) =
-              <Box>
-                <span style={{ fontSize: '30px', color: 'white' }}>
-                  {bombPriceInBNB ? bombPriceInBNB : '-.----'} BTC
-                </span>
-              </Box>
-              <Box>
-                <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
-                  ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'} / BOMB
-                </span>
-              </Box>
-              <span style={{ fontSize: '12px' }}>
-                Market Cap: ${roundAndFormatNumber(bombCirculatingSupply * bombPriceInDollars, 2)} <br />
-                Circulating Supply: {roundAndFormatNumber(bombCirculatingSupply, 2)} <br />
-                Total Supply: {roundAndFormatNumber(bombTotalSupply, 2)}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* BSHARE */}
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent align="center" style={{ position: 'relative' }}>
-              <Button
-                onClick={() => {
-                  bombFinance.watchAssetInMetamask('BSHARE');
-                }}
-                style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
-              >
-                {' '}
-                <b>+</b>&nbsp;&nbsp;
-                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
-              </Button>
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="BSHARE" />
-                </CardIcon>
-              </Box>
-              <h2 style={{ marginBottom: '10px' }}>BSHARE</h2>
-              Current Price
-              <Box>
-                <span style={{ fontSize: '30px', color: 'white' }}>
-                  {bSharePriceInBNB ? bSharePriceInBNB : '-.----'} BNB
-                </span>
-              </Box>
-              <Box>
-                <span style={{ fontSize: '16px' }}>
-                  ${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} / BSHARE
-                </span>
-              </Box>
-              <span style={{ fontSize: '12px' }}>
-                Market Cap: ${roundAndFormatNumber((bShareCirculatingSupply * bSharePriceInDollars).toFixed(2), 2)}{' '}
-                <br />
-                Circulating Supply: {roundAndFormatNumber(bShareCirculatingSupply, 2)} <br />
-                Total Supply: {roundAndFormatNumber(bShareTotalSupply, 2)}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* BBOND */}
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent align="center" style={{ position: 'relative' }}>
-              <Button
-                onClick={() => {
-                  bombFinance.watchAssetInMetamask('BBOND');
-                }}
-                style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
-              >
-                {' '}
-                <b>+</b>&nbsp;&nbsp;
-                <img alt="metamask fox" style={{ width: '20px', filter: 'grayscale(100%)' }} src={MetamaskFox} />
-              </Button>
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="BBOND" />
-                </CardIcon>
-              </Box>
-              <h2 style={{ marginBottom: '10px' }}>BBOND</h2>
-              10,000 BBOND
-              <Box>
-                <span style={{ fontSize: '30px', color: 'white' }}>
-                  {tBondPriceInBNB ? tBondPriceInBNB : '-.----'} BTC
-                </span>
-              </Box>
-              <Box>
-                <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'} / BBOND</span>
-              </Box>
-              <span style={{ fontSize: '12px' }}>
-                Market Cap: ${roundAndFormatNumber((tBondCirculatingSupply * tBondPriceInDollars).toFixed(2), 2)} <br />
-                Circulating Supply: {roundAndFormatNumber(tBondCirculatingSupply, 2)} <br />
-                Total Supply: {roundAndFormatNumber(tBondTotalSupply, 2)}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Card>
-            <CardContent align="center">
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="BOMB-BTCB-LP" />
-                </CardIcon>
-              </Box>
-              <h2>BOMB-BTCB PancakeSwap LP</h2>
-              <Box mt={2}>
-                <Button disabled onClick={onPresentBombZap} className="shinyButtonDisabledSecondary">
-                  Zap In
-                </Button>
-              </Box>
-              <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {bombLPStats?.tokenAmount ? bombLPStats?.tokenAmount : '-.--'} BOMB /{' '}
-                  {bombLPStats?.ftmAmount ? bombLPStats?.ftmAmount : '-.--'} BTCB
-                </span>
-              </Box>
-              <Box>${bombLPStats?.priceOfOne ? bombLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: ${bombLPStats?.totalLiquidity ? roundAndFormatNumber(bombLPStats.totalLiquidity, 2) : '-.--'}{' '}
-                <br />
-                Total Supply: {bombLPStats?.totalSupply ? roundAndFormatNumber(bombLPStats.totalSupply, 2) : '-.--'}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Card>
-            <CardContent align="center">
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="BSHARE-BNB-LP" />
-                </CardIcon>
-              </Box>
-              <h2>BSHARE-BNB PancakeSwap LP</h2>
-              <Box mt={2}>
-                <Button onClick={onPresentBshareZap} className="shinyButtonSecondary">
-                  Zap In
-                </Button>
-              </Box>
-              <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {bshareLPStats?.tokenAmount ? bshareLPStats?.tokenAmount : '-.--'} BSHARE /{' '}
-                  {bshareLPStats?.ftmAmount ? bshareLPStats?.ftmAmount : '-.--'} BNB
-                </span>
-              </Box>
-              <Box>${bshareLPStats?.priceOfOne ? bshareLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: $
-                {bshareLPStats?.totalLiquidity ? roundAndFormatNumber(bshareLPStats.totalLiquidity, 2) : '-.--'}
-                <br />
-                Total Supply: {bshareLPStats?.totalSupply ? roundAndFormatNumber(bshareLPStats.totalSupply, 2) : '-.--'}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid>
       </Grid>
+      <Paper style={{padding:24, borderRadius:12, marginInline:10, marginTop: 40}}>
+    <div className='f' style={{justifyContent:"space-between"}}>
+      <span style={{fontSize:22}}>
+      Bomb Farms
+      </span>
+    <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px"}}>Claim All</div>
+    </div>
+    <div style={{fontSize:12, marginBottom:20}}>Stake your LP tokens in our farms to start earning $BSHARE </div>
+      <div  className='f' style={{justifyContent:"space-between",marginLeft:6, marginRight:6,paddingBottom:4, borderBottom:"solid #999 0.8px"}}>
+        BOMB-BTCB 
+        <div>TVL: $1,008,430</div>
+        </div>
+        <div style={{textAlign:"right"}}>Total Staked: 7232</div>
+        <div style={{display:'flex', justifyContent:"space-between", padding:20}}>
+          <div>Daily Returns <br /> 2%</div>
+          <div>Your Stake</div>
+          <div>Earned</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Deposit</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Withdraw</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Claim reward</div>
+        </div>
+        <div  className='f' style={{justifyContent:"space-between",marginLeft:6, marginRight:6,paddingBottom:4, borderBottom:"solid #999 0.8px"}}>
+        BESHARE BNB
+        <div>TVL: $1,008,430</div>
+        
+      </div>
+      <div style={{display:'flex', justifyContent:"space-between", padding:20}}>
+          <div>Daily Returns <br /> 2%</div>
+          <div>Your Stake</div>
+          <div>Earned</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Deposit</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Withdraw</div>
+          <div style={{borderRadius:100, padding:'2px 8px', border:"solid #999 0.8px", height:"fit-content"}}>Claim reward</div>
+        </div>
+      </Paper>
+      {/* <Paper style={{padding:18, borderRadius:12, marginInline:10, marginTop: 20}}>
+    <div className='f'><span style={{fontSize:22}}>
+      Bomb Farms
+      </span>
+      </div>
+    <div style={{fontSize:12}}>Stake your LP tokens in our farms to start earning $BSHARE</div>
+    <div  className='f' style={{justifyContent:"space-between"}}>
+    BOMB-BTCB 
+    <div>TVL: $1,008,430</div>
+    </div>
+    <div  className='f' style={{justifyContent:"space-between"}}>
+    BOMB-BTCB 
+    <div>TVL: $1,008,430</div>
+    </div>
+      </Paper> */}
     </Page>
   );
 };
