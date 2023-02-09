@@ -1,3 +1,7 @@
+#Find dashboard section on home page navbar section 
+you can go to dashboard on routing "/dashboard" or by clicking on dashboard 
+option given on navbar
+
 # 🪦Welcome to the Bomb.money ecosystem🪦
 
 Thanks for taking the time to contribute!
