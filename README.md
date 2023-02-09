@@ -1,4 +1,4 @@
-#Find dashboard section on home page navbar section 
+# Find dashboard section on home page navbar section 
 I have created dahsboard page in same project you can find that by routing to "/dashboard" 
 you can go to dashboard on routing "/dashboard" or by clicking on dashboard 
 option given on navbar
