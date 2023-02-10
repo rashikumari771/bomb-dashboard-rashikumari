@@ -20,7 +20,7 @@ import useChainId from './hooks/useChainId';
 import { RefreshContextProvider } from './contexts/RefreshContext';
 
 const Home = lazy(() => import('./views/Home'));
-const Dashboard = lazy(() => import('./views/Dashboard'));
+const Dashboard = lazy(() => import('./views/Dashboard/Dashboard'));
 const Farm = lazy(() => import('./views/Farm'));
 const Boardroom = lazy(() => import('./views/Boardroom'));
 const Bond = lazy(() => import('./views/Bond'));
